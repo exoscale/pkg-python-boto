@@ -1,0 +1,23 @@
+#/bin/sh
+
+set -ex
+
+#Create temporary home directory with .ssh/known_hosts file
+#so that test_timeout will be able to work.
+home_orig=$HOME
+home_temp=$(mktemp -d)
+mkdir -p "$home_temp/.ssh"
+touch "$home_temp/.ssh/known_hosts"
+export HOME=$home_temp
+
+set -eu
+cp -r tests "$ADTTMP/"
+cd "$ADTTMP"
+
+for python in $(pyversions -i); do
+    $python tests/test.py unit > /dev/null
+done
+
+#Restore original home directory and remove temp home dir
+export HOME=$home_orig
+rm -rf $home_temp
