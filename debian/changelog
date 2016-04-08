@@ -1,3 +1,9 @@
+python-boto (2.38.0-1ubuntu1~precise0+exo1) precise; urgency=medium
+
+  * Backport to Precise.
+
+ -- Vincent Bernat <bernat@debian.org>  Fri, 08 Apr 2016 10:11:03 +0200
+
 python-boto (2.38.0-1ubuntu1) wily; urgency=low
 
   * Merge from Debian unstable.  Remaining changes:
